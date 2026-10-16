@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Student Management System</h1>
+        <a class="btn" href="/students/new">+ Add Student</a>
+    </header>
+
+    <form class="search" action="/students" method="get">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by name, roll number or course">
+        <button type="submit">Search</button>
+        <a href="/students">Clear</a>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th><th>Roll No.</th><th>Name</th><th>Email</th><th>Course</th><th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.rollNumber}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.course}"></td>
+            <td>
+                <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a> |
+                <a th:href="@{/students/{id}/marks(id=${student.id})}">Marks</a> |
+                <a th:href="@{/students/{id}/report(id=${student.id})}">Report</a> |
+                <a th:href="@{/students/delete/{id}(id=${student.id})}" onclick="return confirm('Delete this student?')">Delete</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(students)}">
+            <td colspan="6">No students found.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

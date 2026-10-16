@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Marks</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="form-container">
+    <h1>Marks Entry</h1>
+    <p><b>Student:</b> <span th:text="${student.name}"></span> |
+       <b>Roll No:</b> <span th:text="${student.rollNumber}"></span></p>
+
+    <form th:action="@{/students/{id}/marks(id=${student.id})}" th:object="${marks}" method="post">
+        <label>Java</label>
+        <input type="number" th:field="*{javaMarks}" min="0" max="100" required>
+
+        <label>Database Management System</label>
+        <input type="number" th:field="*{dbmsMarks}" min="0" max="100" required>
+
+        <label>Data Structures</label>
+        <input type="number" th:field="*{dataStructuresMarks}" min="0" max="100" required>
+
+        <label>Computer Networks</label>
+        <input type="number" th:field="*{computerNetworksMarks}" min="0" max="100" required>
+
+        <label>Operating Systems</label>
+        <input type="number" th:field="*{operatingSystemsMarks}" min="0" max="100" required>
+
+        <button type="submit">Save Marks</button>
+        <a th:href="@{/students/{id}/report(id=${student.id})}">View Report</a>
+    </form>
+</div>
+</body>
+</html>

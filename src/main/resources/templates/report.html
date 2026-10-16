@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Report</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="report">
+    <div class="report-header">
+        <h1>Student Performance Report</h1>
+        <a class="btn" href="/students">Back</a>
+    </div>
+
+    <section class="student-info">
+        <p><b>Name:</b> <span th:text="${student.name}"></span></p>
+        <p><b>Roll Number:</b> <span th:text="${student.rollNumber}"></span></p>
+        <p><b>Email:</b> <span th:text="${student.email}"></span></p>
+        <p><b>Course:</b> <span th:text="${student.course}"></span></p>
+        <p><b>Year:</b> <span th:text="${student.year}"></span></p>
+    </section>
+
+    <table>
+        <thead>
+        <tr><th>Subject</th><th>Marks</th><th>Maximum</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Java</td><td th:text="${marks.javaMarks}"></td><td>100</td></tr>
+        <tr><td>Database Management System</td><td th:text="${marks.dbmsMarks}"></td><td>100</td></tr>
+        <tr><td>Data Structures</td><td th:text="${marks.dataStructuresMarks}"></td><td>100</td></tr>
+        <tr><td>Computer Networks</td><td th:text="${marks.computerNetworksMarks}"></td><td>100</td></tr>
+        <tr><td>Operating Systems</td><td th:text="${marks.operatingSystemsMarks}"></td><td>100</td></tr>
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <p><b>Total:</b> <span th:text="${marks.total}"></span> / 500</p>
+        <p><b>Percentage:</b> <span th:text="${marks.percentage}"></span>%</p>
+        <p><b>Grade:</b> <span th:text="${marks.grade}"></span></p>
+    </div>
+</div>
+</body>
+</html>

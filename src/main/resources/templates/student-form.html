@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="form-container">
+    <h1 th:text="${student.id == null ? 'Add Student' : 'Edit Student'}"></h1>
+
+    <form th:action="${student.id == null ? '/students' : '/students/update/' + student.id}"
+          th:object="${student}" method="post">
+
+        <label>Roll Number</label>
+        <input type="text" th:field="*{rollNumber}" required>
+
+        <label>Name</label>
+        <input type="text" th:field="*{name}" required>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" required>
+
+        <label>Course</label>
+        <input type="text" th:field="*{course}" required>
+
+        <label>Year</label>
+        <input type="number" th:field="*{year}" min="1" max="6" required>
+
+        <button type="submit">Save Student</button>
+        <a href="/students">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
